@@ -5,6 +5,11 @@ import './App.css'
 const presentationData = {
   client: "John Haney",
   date: "May 12, 2026",
+  consultant: {
+    name: "Maria Rogers",
+    email: "maria@franment.com",
+    phone: "(704) 451-4885",
+  },
   brands: [
     {
       id: "rapid-hose",
@@ -264,7 +269,11 @@ function CoverSlide({ data }) {
           <p className="text-gray-400">{data.date}</p>
         </div>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 text-sm text-gray-400">
+          {data.consultant.name} &nbsp;·&nbsp; {data.consultant.email} &nbsp;·&nbsp; {data.consultant.phone}
+        </div>
+
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           {data.brands.map((b) => (
             <button
               key={b.id}
@@ -477,6 +486,18 @@ function ThankYouSlide({ data }) {
           We appreciate the opportunity to share these brand opportunities with you, {data.client.split(' ')[0]}.
           We look forward to helping you find the right fit.
         </p>
+
+        <div className="border border-white/10 rounded-2xl px-8 py-6 inline-block text-left space-y-3">
+          <p className="text-white font-bold text-lg">{data.consultant.name}</p>
+          <a href={`mailto:${data.consultant.email}`} className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+            <span className="text-blue-400">✉</span>
+            {data.consultant.email}
+          </a>
+          <a href={`tel:${data.consultant.phone.replace(/\D/g, '')}`} className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+            <span className="text-blue-400">📞</span>
+            {data.consultant.phone}
+          </a>
+        </div>
       </div>
     </section>
   )
