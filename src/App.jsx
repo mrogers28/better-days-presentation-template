@@ -5,7 +5,7 @@ import './App.css'
 const presentationData = {
   client: "John Haney",
   date: "May 12, 2026",
-  consultant: "Better Days Franchise Consulting",
+  consultant: "",
   brands: [
     {
       id: "speedy-freight",
@@ -168,7 +168,6 @@ function CoverSlide({ data }) {
           <p className="text-gray-400">{data.date}</p>
         </div>
 
-        <div className="mt-12 text-gray-500 text-sm">{data.consultant}</div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 animate-bounce">
@@ -349,9 +348,6 @@ function ThankYouSlide({ data }) {
           We appreciate the opportunity to share these brand opportunities with you, {data.client.split(' ')[0]}.
           We look forward to helping you find the right fit.
         </p>
-        <div className="border-t border-white/10 pt-8 text-gray-500 text-sm">
-          {data.consultant}
-        </div>
       </div>
     </section>
   )
