@@ -114,10 +114,10 @@ const presentationData = {
         "Home Watch Services",
         "Realtor & Commercial Property Services",
       ],
-      investment: "Low-Cost, Home-Based",
-      liquidCapital: "Contact for Details",
-      netWorth: "Contact for Details",
-      franchiseFee: "Contact for Details",
+      investment: "$70,050 – $96,400",
+      liquidCapital: "$50,000",
+      netWorth: "$50,000",
+      franchiseFee: "$49,900",
       whyOwn: [
         { icon: <Home className="w-6 h-6" />, title: "Home-Based, Minimal Overhead" },
         { icon: <Users className="w-6 h-6" />, title: "Two Fast-Growing Markets" },
@@ -286,7 +286,7 @@ function CoverSlide({ data }) {
 }
 
 function BrandSlide({ brand }) {
-  const isContactOnly = brand.investment === "Low-Cost, Home-Based"
+  const isContactOnly = false
 
   return (
     <section className="py-20 border-b border-gray-100" id={brand.id}>
