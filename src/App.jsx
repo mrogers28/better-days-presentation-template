@@ -1,367 +1,414 @@
-import React from 'react'
-import { Button } from '@/components/ui/button.jsx'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.jsx'
-import { Badge } from '@/components/ui/badge.jsx'
-import { CheckCircle, DollarSign, Users, Shield, TrendingUp, Star, Phone, Mail } from 'lucide-react'
+import React, { useState } from 'react'
+import { CheckCircle, DollarSign, TrendingUp, Home, Users, Zap, Globe, Shield, Star, Phone, ChevronDown } from 'lucide-react'
 import './App.css'
 
-// Brand configuration - easily customizable for different franchises
-const brandConfig = {
-  name: "76 Fence",
-  logo: "🛡️", // Placeholder - replace with actual logo
-  industry: "Fencing",
-  tagline: "Premium Fencing Solutions",
-  phone: "866-872-1776",
-  
-  hero: {
-    headline: "START A RECESSION-PROOF BUSINESS WHILE BUILDING YOUR COMMUNITY",
-    subheadline: "With a 76 Fence franchise, you can tap into the essential home improvement market, generate strong revenues, and provide security solutions families truly need.",
-    backgroundImage: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)",
-    ctaPrimary: "CHECK TERRITORY AVAILABILITY",
-    ctaSecondary: "LEARN MORE"
-  },
-  
-  businessModel: {
-    title: "WHAT IS A 76 FENCE FRANCHISE?",
-    description: "As a 76 Fence franchise owner, you'll manage and grow a fencing business by coordinating projects and overseeing skilled subcontractors who handle the installation. Your role focuses on customer service, project management, and building relationships—without needing to install fences yourself."
-  },
-  
-  financials: {
-    earnings: {
-      title: "HOW MUCH CAN I EARN?",
-      multiUnitSales: "$500,000+",
-      multiUnitProfit: "$150,000+",
-      note: "Multi-Unit Performance*"
-    },
-    investment: {
-      title: "HOW MUCH TO LAUNCH?",
-      initialRange: "$75,000 - $125,000",
+const presentationData = {
+  client: "John Haney",
+  date: "May 12, 2026",
+  consultant: "Better Days Franchise Consulting",
+  brands: [
+    {
+      id: "speedy-freight",
+      name: "Speedy Freight",
+      emoji: "🚚",
+      accentColor: "#E63946",
+      accentLight: "#fff1f2",
+      tagline: "B2B Logistics Franchise",
+      description:
+        "Speedy Freight is a low-overhead, home-based logistics franchise helping small and midsize businesses ship smarter. With no trucks, no warehouses, and no inventory, franchisees grow recurring B2B revenue as strategic shipping consultants.",
+      services: [
+        "Full Truckload (FTL) Shipping",
+        "Less-Than-Truckload (LTL) Solutions",
+        "Expedited & Same-Day Delivery",
+        "Cross-Border Shipping",
+        "Logistics & Warehousing Support",
+      ],
+      investment: "$71,900 – $163,000",
       liquidCapital: "$50,000",
-      netWorth: "$200,000"
-    }
-  },
-  
-  benefits: [
-    {
-      icon: <TrendingUp className="w-8 h-8 text-green-600" />,
-      title: "RECESSION-RESISTANT BUSINESS",
-      description: "Fencing is an essential home improvement, not a luxury. Even during economic downturns, homeowners need security, privacy, and property protection."
+      netWorth: "$175,000",
+      whyOwn: [
+        { icon: <TrendingUp className="w-6 h-6" />, title: "Low-Overhead, High-Margin Model" },
+        { icon: <DollarSign className="w-6 h-6" />, title: "Recurring B2B Revenue" },
+        { icon: <Users className="w-6 h-6" />, title: "No Logistics Experience Needed" },
+        { icon: <Shield className="w-6 h-6" />, title: "Corporate Handles Billing & Invoicing" },
+      ],
+      financials: [
+        { label: "Avg. Revenue (Top 21%)*", value: "$2,104,765" },
+        { label: "Avg. Gross Margin (Top 21%)*", value: "$883,034" },
+      ],
+      idealOwner: [
+        "Sales-Oriented & Client-Focused",
+        "Process-Driven Strategic Thinker",
+        "Growth-Minded with Leadership Skills",
+        "Willing to Commit to Full-Time Scaling",
+      ],
+      support: [
+        "Initial Training + Onboarding",
+        "CRM & Real-Time Tracking Tech",
+        "Back Office Support (Billing & AR)",
+        "Lead Lists, Coaching, & Marketing Tools",
+      ],
+      fddNote: "*Refer to the 2025 Speedy Freight FDD. Results may vary.",
     },
     {
-      icon: <Users className="w-8 h-8 text-blue-600" />,
-      title: "NO EMPLOYEES REQUIRED",
-      description: "Work with skilled subcontractors instead of managing employees. Lower overhead costs and reduced HR complexity while maintaining quality control."
+      id: "preservan",
+      name: "Preservan",
+      emoji: "🪵",
+      accentColor: "#2D6A4F",
+      accentLight: "#f0faf5",
+      tagline: "Wood Care & Preservation Franchise",
+      description:
+        "Preservan is a wood care and preservation franchise that repairs, restores, and protects rotted wood using non-invasive, EPA-approved treatments. With a fully home-based model, proprietary systems, and centralized support, franchisees operate lean, profitable businesses in a specialty niche with very little competition.",
+      services: [
+        "Wood Rot Repair & Preservation",
+        "Window & Door Trim Restoration",
+        "Porch, Deck, and Railing Repairs",
+        "Preventative Maintenance",
+      ],
+      investment: "$117,300 – $185,900",
+      liquidCapital: "$50,000",
+      netWorth: "$150,000",
+      franchiseFee: "$54,000",
+      whyOwn: [
+        { icon: <TrendingUp className="w-6 h-6" />, title: "Low Investment, High Margin" },
+        { icon: <Home className="w-6 h-6" />, title: "Home-Based, No Brick & Mortar" },
+        { icon: <Users className="w-6 h-6" />, title: "Centralized Lead Management" },
+        { icon: <Star className="w-6 h-6" />, title: "Specialty Niche with Little Competition" },
+      ],
+      financials: [
+        { label: "Direct Gross Profit After Select Disclosed Expenses and Franchise Related Expenses", value: "$401,054" },
+      ],
+      idealOwner: [
+        "Mission-Driven Leader",
+        "Process-Focused Operator",
+        "Financially-Minded",
+        "Ready to Build",
+      ],
+      support: [
+        "Centralized Contact Center",
+        "Franchisee Onboarding & Field Training",
+        "Technology, Scheduling & CRM Tools",
+        "Marketing Support + Grand Opening Playbook",
+      ],
+      fddNote: "*For the most accurate and current information, please review the latest Franchise Disclosure Document (FDD).",
     },
     {
-      icon: <Shield className="w-8 h-8 text-purple-600" />,
-      title: "PROTECTED TERRITORY",
-      description: "Your business will be the only 76 Fence franchise in your designated market area. No competition from other franchisees in your territory."
+      id: "pinks-window",
+      name: "Pink's Window Services",
+      emoji: "🪟",
+      accentColor: "#D63384",
+      accentLight: "#fff0f7",
+      tagline: "Residential Window & Exterior Cleaning Franchise",
+      description:
+        "Pink's Window Services is a home-based franchise delivering professional window cleaning, pressure washing, and gutter services to residential clients.",
+      services: [
+        "Window Cleaning (Interior & Exterior)",
+        "Pressure Washing",
+        "Gutter Cleaning & Protection",
+        "Screen Repair & Hard Water Removal",
+      ],
+      investment: "$101,000 – $162,700",
+      liquidCapital: "$50,000",
+      netWorth: "$150,000",
+      whyOwn: [
+        { icon: <Home className="w-6 h-6" />, title: "Low Overhead, Home-Based Model" },
+        { icon: <DollarSign className="w-6 h-6" />, title: "High Recurring Revenue & Repeat Clients" },
+        { icon: <Zap className="w-6 h-6" />, title: "Fast Ramp-Up with Centralized Call Center" },
+        { icon: <Globe className="w-6 h-6" />, title: "Flexible, Lifestyle-Friendly Schedule" },
+      ],
+      financials: [
+        { label: "Gross Profit", value: "$632,411" },
+        { label: "Net Income", value: "$314,857" },
+      ],
+      idealOwner: [
+        "Sales-Oriented & Coachable",
+        "Comfortable Leading a Crew",
+        "Client-Focused Communicator",
+        "Driven to Grow Multiple Territories",
+      ],
+      support: [
+        "CRM & Call Center Handling Inbound Leads",
+        "In-Person Training + Ongoing Field Support",
+        "Proprietary Software for Scheduling & Billing",
+        "Local Marketing & Community Launch Strategy",
+      ],
+      fddNote: "*For the most accurate and current information, please review the latest Franchise Disclosure Document (FDD).",
     },
-    {
-      icon: <CheckCircle className="w-8 h-8 text-green-600" />,
-      title: "COMPREHENSIVE SUPPORT",
-      description: "From initial training to ongoing operations, marketing support, and business development. We're with you every step of the way."
-    }
   ],
-  
-  services: [
-    "Fence Installation",
-    "Fence Repairs", 
-    "Fence Staining",
-    "Maintenance Services"
-  ],
-  
-  idealOwner: [
-    {
-      title: "SALES & MANAGEMENT EXPERIENCE",
-      description: "Your ability to drive sales, manage subcontractors, and oversee operations will be essential to your franchise's growth and success."
-    },
-    {
-      title: "CUSTOMER SERVICE ORIENTED", 
-      description: "Providing excellent customer service and building lasting relationships is crucial for repeat business and referrals."
-    },
-    {
-      title: "BUSINESS SAVVY",
-      description: "You don't need to install fences, but you must be passionate about managing operations and ensuring customer satisfaction."
-    },
-    {
-      title: "ABILITY TO MULTI-TASK",
-      description: "Efficiently handle various responsibilities, from managing crews to addressing customer needs while keeping the business running smoothly."
-    }
-  ]
+}
+
+const FDD_DISCLAIMER =
+  "For the most accurate and current information, please review the latest Franchise Disclosure Document (FDD). The details provided here may have been updated since publication. Before making any investment decisions, confirm all terms, fees, and requirements directly with the franchisor."
+
+function CoverSlide({ data }) {
+  return (
+    <section className="min-h-screen flex flex-col items-center justify-center bg-gray-950 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-black" />
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-900/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-900/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+
+      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        <div className="mb-8">
+          <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm font-medium tracking-wider uppercase mb-6">
+            <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+            Franchise Opportunity Overview
+          </div>
+          <h1 className="text-6xl md:text-7xl font-black tracking-tight mb-4">
+            BRAND
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+              PRESENTATION
+            </span>
+          </h1>
+        </div>
+
+        <div className="border-t border-white/10 pt-8 mt-8 space-y-2">
+          <p className="text-gray-400 text-sm uppercase tracking-widest">Prepared Exclusively For</p>
+          <p className="text-3xl font-bold">{data.client}</p>
+          <p className="text-gray-400">{data.date}</p>
+        </div>
+
+        <div className="mt-12 text-gray-500 text-sm">{data.consultant}</div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 animate-bounce">
+        <ChevronDown className="w-6 h-6" />
+      </div>
+    </section>
+  )
+}
+
+function BrandSlide({ brand }) {
+  return (
+    <section className="py-20 border-b border-gray-100" id={brand.id}>
+      {/* Brand Header */}
+      <div className="max-w-5xl mx-auto px-6">
+        <div
+          className="rounded-2xl p-8 md:p-12 mb-10"
+          style={{ backgroundColor: brand.accentColor }}
+        >
+          <div className="flex items-start gap-6">
+            <div className="text-5xl flex-shrink-0">{brand.emoji}</div>
+            <div className="text-white">
+              <p className="text-sm font-semibold uppercase tracking-widest opacity-75 mb-1">
+                {brand.tagline}
+              </p>
+              <h2 className="text-4xl md:text-5xl font-black mb-4">{brand.name}</h2>
+              <p className="text-lg leading-relaxed opacity-90 max-w-2xl">{brand.description}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mb-10">
+          {/* Services */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Services</h3>
+            <ul className="space-y-2">
+              {brand.services.map((s, i) => (
+                <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
+                  <span
+                    className="w-2 h-2 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: brand.accentColor }}
+                  />
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Investment Requirements */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">
+              Investment Requirements
+            </h3>
+            <div className="space-y-4">
+              <div>
+                <p className="text-3xl font-black text-gray-900">{brand.investment}</p>
+                <p className="text-sm text-gray-500 mt-0.5">Total Investment</p>
+              </div>
+              <div className="grid grid-cols-2 gap-4 pt-2 border-t border-gray-100">
+                <div>
+                  <p className="text-xl font-bold text-gray-900">{brand.liquidCapital}</p>
+                  <p className="text-xs text-gray-500">Liquid Capital</p>
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-gray-900">{brand.netWorth}</p>
+                  <p className="text-xs text-gray-500">Net Worth</p>
+                </div>
+                {brand.franchiseFee && (
+                  <div>
+                    <p className="text-xl font-bold text-gray-900">{brand.franchiseFee}</p>
+                    <p className="text-xs text-gray-500">Franchise Fee</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Own */}
+        <div className="mb-10">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Why Own?</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {brand.whyOwn.map((item, i) => (
+              <div
+                key={i}
+                className="rounded-xl p-5 text-center"
+                style={{ backgroundColor: brand.accentLight }}
+              >
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3 text-white"
+                  style={{ backgroundColor: brand.accentColor }}
+                >
+                  {item.icon}
+                </div>
+                <p className="text-sm font-semibold text-gray-800 leading-snug">{item.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Financials */}
+        <div className="mb-10">
+          <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">
+            Disclosed Financials
+          </h3>
+          <div className={`grid gap-4 ${brand.financials.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
+            {brand.financials.map((f, i) => (
+              <div
+                key={i}
+                className="rounded-xl p-6"
+                style={{ backgroundColor: brand.accentColor }}
+              >
+                <p className="text-4xl font-black text-white mb-1">{f.value}</p>
+                <p className="text-sm text-white/80">{f.label}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-400 mt-3 italic">{brand.fddNote}</p>
+          <p className="text-xs text-gray-400 mt-1 italic">{FDD_DISCLAIMER}</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Ideal Owner */}
+          <div className="bg-gray-50 rounded-2xl p-6">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Ideal Owner</h3>
+            <ul className="space-y-3">
+              {brand.idealOwner.map((trait, i) => (
+                <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
+                  <span
+                    className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs font-bold"
+                    style={{ backgroundColor: brand.accentColor }}
+                  >
+                    ●
+                  </span>
+                  {trait}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Franchisor Support */}
+          <div className="bg-gray-50 rounded-2xl p-6">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">
+              Franchisor Support
+            </h3>
+            <ul className="space-y-3">
+              {brand.support.map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-800 font-medium">
+                  <CheckCircle
+                    className="w-5 h-5 flex-shrink-0 mt-0.5"
+                    style={{ color: brand.accentColor }}
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ThankYouSlide({ data }) {
+  return (
+    <section className="min-h-screen flex flex-col items-center justify-center bg-gray-950 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-black" />
+      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+
+      <div className="relative z-10 text-center px-6 max-w-2xl mx-auto">
+        <div className="text-6xl mb-8">🤝</div>
+        <h2 className="text-6xl md:text-7xl font-black mb-6">
+          THANK{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+            YOU
+          </span>
+        </h2>
+        <p className="text-xl text-gray-400 leading-relaxed mb-12">
+          We appreciate the opportunity to share these brand opportunities with you, {data.client.split(' ')[0]}.
+          We look forward to helping you find the right fit.
+        </p>
+        <div className="border-t border-white/10 pt-8 text-gray-500 text-sm">
+          {data.consultant}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function NavDot({ brandId, label, color, active, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      title={label}
+      className="group flex items-center gap-2"
+    >
+      <span
+        className="block w-2.5 h-2.5 rounded-full transition-all duration-200"
+        style={{
+          backgroundColor: active ? color : '#d1d5db',
+          transform: active ? 'scale(1.4)' : 'scale(1)',
+        }}
+      />
+      <span className="text-xs text-gray-500 hidden group-hover:block whitespace-nowrap">{label}</span>
+    </button>
+  )
 }
 
 function App() {
+  const [activeBrand, setActiveBrand] = useState(null)
+
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    setActiveBrand(id)
+  }
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section 
-        className="relative min-h-screen flex items-center justify-center text-white"
-        style={{ background: brandConfig.hero.backgroundImage }}
-      >
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
-          {/* Logo */}
-          <div className="mb-8">
-            <div className="text-6xl mb-4">{brandConfig.logo}</div>
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Star className="w-6 h-6 fill-current" />
-              <Star className="w-8 h-8 fill-current" />
-              <Star className="w-6 h-6 fill-current" />
-            </div>
-            <h2 className="text-2xl font-bold tracking-wider">{brandConfig.name.toUpperCase()}</h2>
-          </div>
-          
-          {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            {brandConfig.hero.headline}
-          </h1>
-          
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed">
-            {brandConfig.hero.subheadline}
-          </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg font-semibold">
-              {brandConfig.hero.ctaPrimary}
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg font-semibold">
-              {brandConfig.hero.ctaSecondary}
-            </Button>
-          </div>
-        </div>
-      </section>
+    <div className="bg-white font-sans">
+      {/* Sticky side nav dots */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
+        {presentationData.brands.map((b) => (
+          <NavDot
+            key={b.id}
+            brandId={b.id}
+            label={b.name}
+            color={b.accentColor}
+            active={activeBrand === b.id}
+            onClick={() => scrollTo(b.id)}
+          />
+        ))}
+      </div>
 
-      {/* What Is Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Video/Image Placeholder */}
-            <div className="relative">
-              <div className="aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
-                <div className="text-center text-white">
-                  <Users className="w-16 h-16 mx-auto mb-4" />
-                  <p className="text-lg">Franchise Owner Success Story</p>
-                  <p className="text-sm opacity-75">Video Testimonial</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Content */}
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                {brandConfig.businessModel.title.split(' ').map((word, index) => (
-                  <span key={index} className={word === brandConfig.name.toUpperCase() ? 'text-red-600' : 'text-gray-900'}>
-                    {word}{' '}
-                  </span>
-                ))}
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                {brandConfig.businessModel.description}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CoverSlide data={presentationData} />
 
-      {/* Financial Information Section */}
-      <section className="py-20 bg-red-600 text-white relative overflow-hidden">
-        {/* Curved Design Element */}
-        <div className="absolute top-0 left-0 w-full h-20 bg-gray-50 rounded-b-[100px]"></div>
-        <div className="absolute bottom-0 left-0 w-full h-20 bg-white rounded-t-[100px]"></div>
-        
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Earnings Card */}
-            <Card className="bg-white text-gray-900 shadow-xl">
-              <CardHeader className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4 mx-auto">
-                  <DollarSign className="w-8 h-8 text-green-600" />
-                </div>
-                <Badge className="bg-green-500 text-white mb-4">{brandConfig.financials.earnings.title}</Badge>
-              </CardHeader>
-              <CardContent className="text-center space-y-6">
-                <div>
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    {brandConfig.financials.earnings.multiUnitSales}
-                  </div>
-                  <p className="text-gray-600">Multi-Unit Gross Sales</p>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    {brandConfig.financials.earnings.multiUnitProfit}
-                  </div>
-                  <p className="text-gray-600">Multi-Unit Direct Gross Profit</p>
-                </div>
-              </CardContent>
-            </Card>
+      {presentationData.brands.map((brand) => (
+        <BrandSlide key={brand.id} brand={brand} />
+      ))}
 
-            {/* Investment Card */}
-            <Card className="bg-white text-gray-900 shadow-xl">
-              <CardHeader className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <TrendingUp className="w-8 h-8 text-blue-600" />
-                </div>
-                <Badge className="bg-red-600 text-white mb-4">{brandConfig.financials.investment.title}</Badge>
-              </CardHeader>
-              <CardContent className="text-center space-y-6">
-                <div>
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    {brandConfig.financials.investment.initialRange}
-                  </div>
-                  <p className="text-gray-600">Initial Investment Range</p>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    {brandConfig.financials.investment.liquidCapital}
-                  </div>
-                  <p className="text-gray-600">Liquid Capital Required</p>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    {brandConfig.financials.investment.netWorth}
-                  </div>
-                  <p className="text-gray-600">Net Worth Required</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            WHY OWN A <span className="text-red-600">{brandConfig.name.toUpperCase()}</span> FRANCHISE?
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {brandConfig.benefits.map((benefit, index) => (
-              <Card key={index} className="p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <CardContent className="space-y-4">
-                  <div className="flex items-center gap-4 mb-4">
-                    {benefit.icon}
-                    <h3 className="text-xl font-bold">{benefit.title}</h3>
-                  </div>
-                  <p className="text-gray-700 leading-relaxed">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg font-semibold">
-              CHECK TERRITORY AVAILABILITY
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Your Role Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            YOUR ROLE AS A <span className="text-red-600">{brandConfig.name.toUpperCase()}</span> FRANCHISE OWNER
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {brandConfig.services.map((service, index) => (
-              <Card key={index} className="text-center p-6 shadow-lg">
-                <CardContent>
-                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-8 h-8 text-red-600" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{service}</h3>
-                  <p className="text-gray-600">Manage and coordinate professional {service.toLowerCase()} services for residential and commercial clients.</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <p className="text-lg text-gray-700 leading-relaxed text-center">
-              As an owner, your day-to-day will be focused on driving growth, delivering excellence, and building lasting relationships. 
-              You'll conduct in-home estimates, manage subcontractor performance, track key metrics, and oversee project scheduling 
-              to ensure every customer receives exceptional service.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Ideal Owner Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            ARE YOU THE IDEAL <span className="text-red-600">{brandConfig.name.toUpperCase()}</span> FRANCHISE OWNER?
-          </h2>
-          
-          <p className="text-xl text-center text-gray-600 mb-12 max-w-4xl mx-auto">
-            If the traits below sound like you, this might just be the franchise opportunity you've been looking for.
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {brandConfig.idealOwner.map((trait, index) => (
-              <div key={index} className="space-y-4">
-                <h3 className="text-xl font-bold text-gray-900">{trait.title}</h3>
-                <p className="text-gray-700 leading-relaxed">{trait.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-20 bg-red-600 text-white">
-        <div className="max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            READY TO START YOUR FRANCHISE JOURNEY?
-          </h2>
-          <p className="text-xl mb-12">
-            Take our free franchise matching quiz to discover if {brandConfig.name} is the right opportunity for you.
-          </p>
-          <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
-            TAKE THE FREE FRANCHISE QUIZ →
-          </Button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">{brandConfig.name}</h3>
-              <p className="text-gray-400">{brandConfig.tagline}</p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Contact</h4>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  <span>{brandConfig.phone}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  <span>franchise@{brandConfig.name.toLowerCase().replace(' ', '')}.com</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Disclaimer</h4>
-              <p className="text-sm text-gray-400">
-                *For the most accurate and current information, please review the latest Franchise Disclosure Document (FDD). 
-                The details provided here may have been updated since publication.
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <ThankYouSlide data={presentationData} />
     </div>
   )
 }
 
 export default App
-
