@@ -1,138 +1,234 @@
-import React, { useState } from 'react'
-import { CheckCircle, DollarSign, TrendingUp, Home, Users, Zap, Globe, Shield, Star, Phone, ChevronDown } from 'lucide-react'
+import React from 'react'
+import { CheckCircle, DollarSign, TrendingUp, Home, Users, Zap, Globe, Shield, Truck, FlaskConical, Star, ChevronDown, Wrench, Building2 } from 'lucide-react'
 import './App.css'
 
 const presentationData = {
   client: "John Haney",
   date: "May 12, 2026",
-  consultant: "",
   brands: [
     {
-      id: "speedy-freight",
-      name: "Speedy Freight",
-      emoji: "🚚",
-      accentColor: "#E63946",
+      id: "rapid-hose",
+      name: "Rapid Hose",
+      emoji: "🔧",
+      accentColor: "#DC2626",
       accentLight: "#fff1f2",
-      tagline: "B2B Logistics Franchise",
+      tagline: "B2B Mobile Hydraulic Hose Franchise",
       description:
-        "Speedy Freight is a low-overhead, home-based logistics franchise helping small and midsize businesses ship smarter. With no trucks, no warehouses, and no inventory, franchisees grow recurring B2B revenue as strategic shipping consultants.",
+        "Rapid Hose is a B2B mobile van-based franchise for onsite hydraulic hose replacement. It provides a critical emergency service to the construction, heavy equipment, and manufacturing sectors — no brick and mortar required.",
       services: [
-        "Full Truckload (FTL) Shipping",
-        "Less-Than-Truckload (LTL) Solutions",
-        "Expedited & Same-Day Delivery",
-        "Cross-Border Shipping",
-        "Logistics & Warehousing Support",
+        "Onsite Hydraulic Hose Replacement",
+        "Emergency Mobile Service",
+        "Construction Equipment Support",
+        "Heavy Equipment & Manufacturing Service",
+        "Multi-Van Territory Scaling",
       ],
-      investment: "$71,900 – $163,000",
-      liquidCapital: "$50,000",
-      netWorth: "$175,000",
+      investment: "$167,333 – $260,491",
+      liquidCapital: "$52,000+",
+      netWorth: "$168,000+",
+      franchiseFee: "$50,000",
       whyOwn: [
-        { icon: <TrendingUp className="w-6 h-6" />, title: "Low-Overhead, High-Margin Model" },
-        { icon: <DollarSign className="w-6 h-6" />, title: "Recurring B2B Revenue" },
-        { icon: <Users className="w-6 h-6" />, title: "No Logistics Experience Needed" },
-        { icon: <Shield className="w-6 h-6" />, title: "Corporate Handles Billing & Invoicing" },
+        { icon: <Truck className="w-6 h-6" />, title: "Mobile-Based, No Brick & Mortar" },
+        { icon: <Zap className="w-6 h-6" />, title: "Critical Emergency Service" },
+        { icon: <TrendingUp className="w-6 h-6" />, title: "B2B Recurring Revenue" },
+        { icon: <Shield className="w-6 h-6" />, title: "Proprietary Dispatch Software" },
       ],
       financials: [
-        { label: "Avg. Revenue (Top 21%)*", value: "$2,104,765" },
-        { label: "Avg. Gross Margin (Top 21%)*", value: "$883,034" },
+        { label: "Item 19 Performance Data Included in FDD", value: "Disclosed" },
+        { label: "Veterans Discount on Initial Franchise Fee", value: "5% Off" },
       ],
       idealOwner: [
-        "Sales-Oriented & Client-Focused",
-        "Process-Driven Strategic Thinker",
-        "Growth-Minded with Leadership Skills",
-        "Willing to Commit to Full-Time Scaling",
+        "Mechanically Inclined or Knowledgeable",
+        "People Skills / Customer Relationship Driven",
+        "Positive Attitude & Reliable",
+        "Driven & Focused on Long-Term Commitment",
       ],
       support: [
-        "Initial Training + Onboarding",
-        "CRM & Real-Time Tracking Tech",
-        "Back Office Support (Billing & AR)",
-        "Lead Lists, Coaching, & Marketing Tools",
+        "Proprietary Dispatch & Tracking Software",
+        "Well-Established Operations Processes",
+        "Fast Startup — Operational in Months",
+        "Scalable via Additional Vans & Territories",
       ],
-      fddNote: "*Refer to the 2025 Speedy Freight FDD. Results may vary.",
+      fddNote: "*Per 2026 FDD Requirements. Results may vary. Item 19 shared in FDD.",
     },
     {
-      id: "preservan",
-      name: "Preservan",
-      emoji: "🪵",
-      accentColor: "#2D6A4F",
-      accentLight: "#f0faf5",
-      tagline: "Wood Care & Preservation Franchise",
-      description:
-        "Preservan is a wood care and preservation franchise that repairs, restores, and protects rotted wood using non-invasive, EPA-approved treatments. With a fully home-based model, proprietary systems, and centralized support, franchisees operate lean, profitable businesses in a specialty niche with very little competition.",
-      services: [
-        "Wood Rot Repair & Preservation",
-        "Window & Door Trim Restoration",
-        "Porch, Deck, and Railing Repairs",
-        "Preventative Maintenance",
-      ],
-      investment: "$117,300 – $185,900",
-      liquidCapital: "$50,000",
-      netWorth: "$150,000",
-      franchiseFee: "$54,000",
-      whyOwn: [
-        { icon: <TrendingUp className="w-6 h-6" />, title: "Low Investment, High Margin" },
-        { icon: <Home className="w-6 h-6" />, title: "Home-Based, No Brick & Mortar" },
-        { icon: <Users className="w-6 h-6" />, title: "Centralized Lead Management" },
-        { icon: <Star className="w-6 h-6" />, title: "Specialty Niche with Little Competition" },
-      ],
-      financials: [
-        { label: "Direct Gross Profit After Select Disclosed Expenses and Franchise Related Expenses", value: "$401,054" },
-      ],
-      idealOwner: [
-        "Mission-Driven Leader",
-        "Process-Focused Operator",
-        "Financially-Minded",
-        "Ready to Build",
-      ],
-      support: [
-        "Centralized Contact Center",
-        "Franchisee Onboarding & Field Training",
-        "Technology, Scheduling & CRM Tools",
-        "Marketing Support + Grand Opening Playbook",
-      ],
-      fddNote: "*For the most accurate and current information, please review the latest Franchise Disclosure Document (FDD).",
-    },
-    {
-      id: "pinks-window",
-      name: "Pink's Window Services",
+      id: "gatsby-glass",
+      name: "Gatsby Glass",
       emoji: "🪟",
-      accentColor: "#D63384",
-      accentLight: "#fff0f7",
-      tagline: "Residential Window & Exterior Cleaning Franchise",
+      accentColor: "#1E3A5F",
+      accentLight: "#f0f4f9",
+      tagline: "Premium Glass Solutions Franchise",
       description:
-        "Pink's Window Services is a home-based franchise delivering professional window cleaning, pressure washing, and gutter services to residential clients.",
+        "Gatsby Glass is the premier destination for custom glass solutions — frameless shower enclosures, glass railings, custom mirrors, partitions, and storefronts. Ranked a Top New & Emerging Franchise by Entrepreneur Magazine in 2024 and 2025.",
       services: [
-        "Window Cleaning (Interior & Exterior)",
-        "Pressure Washing",
-        "Gutter Cleaning & Protection",
-        "Screen Repair & Hard Water Removal",
+        "Frameless Glass Showers & Enclosures",
+        "Glass Railings, Stairs & Balconies",
+        "Accordion Doors",
+        "Custom Mirrors & Frames",
+        "Commercial Glass Partitions & Walls",
+        "Store Front Windows & Doors",
       ],
-      investment: "$101,000 – $162,700",
-      liquidCapital: "$50,000",
-      netWorth: "$150,000",
+      investment: "$195,691 – $255,716",
+      liquidCapital: "$150,000",
+      netWorth: "$500,000",
+      franchiseFee: "$59,500",
       whyOwn: [
-        { icon: <Home className="w-6 h-6" />, title: "Low Overhead, Home-Based Model" },
-        { icon: <DollarSign className="w-6 h-6" />, title: "High Recurring Revenue & Repeat Clients" },
-        { icon: <Zap className="w-6 h-6" />, title: "Fast Ramp-Up with Centralized Call Center" },
-        { icon: <Globe className="w-6 h-6" />, title: "Flexible, Lifestyle-Friendly Schedule" },
+        { icon: <Star className="w-6 h-6" />, title: "Low Competition, Untapped Market" },
+        { icon: <TrendingUp className="w-6 h-6" />, title: "Tiered Royalty — Starts at 5%" },
+        { icon: <Building2 className="w-6 h-6" />, title: "Premium Vendor Partnerships" },
+        { icon: <Shield className="w-6 h-6" />, title: "Award-Winning Emerging Brand" },
       ],
       financials: [
-        { label: "Gross Profit", value: "$632,411" },
-        { label: "Net Income", value: "$314,857" },
+        { label: "Avg. Gross Sales — Top Location", value: "$2,738,808" },
+        { label: "Avg. Gross Sales — Top 50%", value: "$1,559,539" },
+        { label: "Avg. Gross Sales — Total System", value: "$1,132,746" },
+        { label: "Average Close Ratio", value: "58.2%" },
       ],
       idealOwner: [
-        "Sales-Oriented & Coachable",
-        "Comfortable Leading a Crew",
-        "Client-Focused Communicator",
-        "Driven to Grow Multiple Territories",
+        "Driven to Build Long-Term",
+        "Executive Skillset — Manages People & KPIs",
+        "Community-Focused with Local Presence",
+        "No Industry Experience Required",
       ],
       support: [
-        "CRM & Call Center Handling Inbound Leads",
-        "In-Person Training + Ongoing Field Support",
-        "Proprietary Software for Scheduling & Billing",
-        "Local Marketing & Community Launch Strategy",
+        "Configuration Suite — 3D Rendering & Live Pricing",
+        "Virtual Showroom for Interactive Client Experience",
+        "Visualizer Tool — Real-Time Custom Blueprint",
+        "Digital Sales Process + Smart Glass Technology",
       ],
-      fddNote: "*For the most accurate and current information, please review the latest Franchise Disclosure Document (FDD).",
+      fddNote: "*Financial performance per FDD Item 19. Refer to FDD for full details. Results may vary.",
+    },
+    {
+      id: "trublue",
+      name: "TruBlue",
+      emoji: "🏠",
+      accentColor: "#1565C0",
+      accentLight: "#eff6ff",
+      tagline: "Home Service Ally — Seniors & Busy Adults",
+      description:
+        "TruBlue is the only national brand focused on ongoing home maintenance for seniors and busy adults. Home-based, low overhead, and backed by 30+ years of franchising experience. Entrepreneur Franchise 500 Ranked — Top Home-Based & Top Low-Cost Franchise.",
+      services: [
+        "Home Safety Assessments & Modifications",
+        "Handyman Services & Repairs",
+        "Yard & Outdoor Services",
+        "Home Maintenance Plans (Recurring)",
+        "Home Watch Services",
+        "Realtor & Commercial Property Services",
+      ],
+      investment: "Low-Cost, Home-Based",
+      liquidCapital: "Contact for Details",
+      netWorth: "Contact for Details",
+      franchiseFee: "Contact for Details",
+      whyOwn: [
+        { icon: <Home className="w-6 h-6" />, title: "Home-Based, Minimal Overhead" },
+        { icon: <Users className="w-6 h-6" />, title: "Two Fast-Growing Markets" },
+        { icon: <DollarSign className="w-6 h-6" />, title: "Recurring Revenue Model" },
+        { icon: <Shield className="w-6 h-6" />, title: "30+ Years Franchising Experience" },
+      ],
+      financials: [
+        { label: "Aging-in-Place Remodeling Market (NAHB Projection)", value: "$20–25B" },
+        { label: "Adults 65+ expected to reach by 2040", value: "22% of U.S. Pop." },
+      ],
+      idealOwner: [
+        "Desire to Help Seniors & Busy Adults",
+        "Community-Focused & People-Oriented",
+        "Business Management & Leadership Skills",
+        "No Home Services Experience Required",
+      ],
+      support: [
+        "Online Training + 1-Week Corporate Workshop",
+        "Dedicated Franchise Business Coach",
+        "Full Marketing & Digital Advertising Program",
+        "National Partnerships (Honor, Helper Bees, Comfort Keepers)",
+      ],
+      fddNote: "*Entrepreneur Franchise 500 Ranked. Top Home-Based & Top Low-Cost Franchise. Review FDD for investment details.",
+    },
+    {
+      id: "complete-mobile-drug-testing",
+      name: "Complete Mobile Drug Testing",
+      emoji: "🧪",
+      accentColor: "#0F766E",
+      accentLight: "#f0fdfa",
+      tagline: "B2B Mobile Drug Testing Franchise",
+      description:
+        "Complete Mobile Drug Testing brings on-site drug and alcohol testing directly to businesses — no lab, no storefront. Serves employers with DOT compliance, pre-employment screening, and ongoing random testing programs. Fully mobile, low overhead, recurring B2B clients.",
+      services: [
+        "On-Site Employee Drug & Alcohol Testing",
+        "DOT Compliance Testing",
+        "Pre-Employment Screening",
+        "Random Drug Testing Programs",
+        "Court-Ordered & Reasonable Suspicion Testing",
+      ],
+      investment: "$72,350 – $123,150",
+      liquidCapital: "$100,000",
+      netWorth: "$150,000",
+      franchiseFee: "$50,000",
+      whyOwn: [
+        { icon: <Truck className="w-6 h-6" />, title: "Fully Mobile, No Storefront" },
+        { icon: <Building2 className="w-6 h-6" />, title: "Mandatory B2B Compliance Market" },
+        { icon: <DollarSign className="w-6 h-6" />, title: "Recurring Corporate Clients" },
+        { icon: <TrendingUp className="w-6 h-6" />, title: "Low Investment, High Margin" },
+      ],
+      financials: [
+        { label: "Total Investment Range", value: "$72K–$123K" },
+        { label: "Franchise Fee", value: "$50,000" },
+      ],
+      idealOwner: [
+        "Sales-Focused & B2B Relationship Builder",
+        "Process-Driven & Detail-Oriented",
+        "Compliance & Professionalism Minded",
+        "Comfortable Calling on Local Businesses",
+      ],
+      support: [
+        "Testing Protocol & Compliance Training",
+        "Sales Systems & Business Development Tools",
+        "Territory Support & Lead Generation",
+        "Ongoing Operational & Marketing Guidance",
+      ],
+      fddNote: "*Investment data sourced from FDD disclosures. Review current FDD for full details. Results may vary.",
+    },
+    {
+      id: "donutnv",
+      name: "DonutNV",
+      emoji: "🍩",
+      accentColor: "#EA580C",
+      accentLight: "#fff7ed",
+      tagline: "America's Sweetest Mobile Donut Franchise",
+      description:
+        "DonutNV is a fully mobile mini donut franchise operated from a custom-branded trailer — no real estate, no build-out, and no waiting. Franchisees can launch and start selling within hours of receiving their turnkey trailer. 145+ units and growing.",
+      services: [
+        "Fresh Mini Donuts — Made to Order",
+        "Custom Flavors, Glazes & Toppings",
+        "Farmers Markets & Weekend Events",
+        "Festivals, Fairs & Pop-Up Events",
+        "Corporate Events & Private Catering",
+      ],
+      investment: "$185,075 – $253,525",
+      liquidCapital: "$100,000",
+      netWorth: "$250,000",
+      franchiseFee: "$59,500",
+      whyOwn: [
+        { icon: <Truck className="w-6 h-6" />, title: "No Real Estate or Build-Out Costs" },
+        { icon: <Zap className="w-6 h-6" />, title: "Launch & Sell Within Hours" },
+        { icon: <Globe className="w-6 h-6" />, title: "Go Anywhere — Flexible Schedule" },
+        { icon: <TrendingUp className="w-6 h-6" />, title: "145+ Units & Growing Fast" },
+      ],
+      financials: [
+        { label: "Total Units (2025)", value: "145+" },
+        { label: "Monthly Royalty (Flat Fee)", value: "$750/mo" },
+      ],
+      idealOwner: [
+        "Community & Event-Oriented Personality",
+        "Customer-Facing & Energetic",
+        "Entrepreneurial Self-Starter",
+        "Flexible & Willing to Work Events & Markets",
+      ],
+      support: [
+        "Turnkey Branded Trailer — Ready to Operate",
+        "Training on Operations & Recipes",
+        "Protected Territory & Marketing Support",
+        "Flat-Fee Monthly Royalty Model",
+      ],
+      fddNote: "*Data sourced from FDD disclosures and franchise review sources (2025–2026). Review current FDD for full details.",
     },
   ],
 }
@@ -168,6 +264,18 @@ function CoverSlide({ data }) {
           <p className="text-gray-400">{data.date}</p>
         </div>
 
+        <div className="mt-12 flex flex-wrap justify-center gap-3">
+          {data.brands.map((b) => (
+            <button
+              key={b.id}
+              onClick={() => document.getElementById(b.id)?.scrollIntoView({ behavior: 'smooth' })}
+              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors rounded-full px-4 py-2 text-sm"
+            >
+              <span>{b.emoji}</span>
+              <span>{b.name}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 animate-bounce">
@@ -178,10 +286,12 @@ function CoverSlide({ data }) {
 }
 
 function BrandSlide({ brand }) {
+  const isContactOnly = brand.investment === "Low-Cost, Home-Based"
+
   return (
     <section className="py-20 border-b border-gray-100" id={brand.id}>
-      {/* Brand Header */}
       <div className="max-w-5xl mx-auto px-6">
+        {/* Brand Header */}
         <div
           className="rounded-2xl p-8 md:p-12 mb-10"
           style={{ backgroundColor: brand.accentColor }}
@@ -220,28 +330,47 @@ function BrandSlide({ brand }) {
             <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">
               Investment Requirements
             </h3>
-            <div className="space-y-4">
-              <div>
-                <p className="text-3xl font-black text-gray-900">{brand.investment}</p>
-                <p className="text-sm text-gray-500 mt-0.5">Total Investment</p>
+            {isContactOnly ? (
+              <div className="space-y-3">
+                <div
+                  className="rounded-xl p-4 text-center"
+                  style={{ backgroundColor: brand.accentLight }}
+                >
+                  <p className="text-xl font-bold" style={{ color: brand.accentColor }}>
+                    Low-Cost, Home-Based Investment
+                  </p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    Entrepreneur Franchise 500 — Top Low-Cost Franchise
+                  </p>
+                </div>
+                <p className="text-sm text-gray-500 text-center">
+                  Contact for current investment details & FDD
+                </p>
               </div>
-              <div className="grid grid-cols-2 gap-4 pt-2 border-t border-gray-100">
+            ) : (
+              <div className="space-y-4">
                 <div>
-                  <p className="text-xl font-bold text-gray-900">{brand.liquidCapital}</p>
-                  <p className="text-xs text-gray-500">Liquid Capital</p>
+                  <p className="text-3xl font-black text-gray-900">{brand.investment}</p>
+                  <p className="text-sm text-gray-500 mt-0.5">Total Investment</p>
                 </div>
-                <div>
-                  <p className="text-xl font-bold text-gray-900">{brand.netWorth}</p>
-                  <p className="text-xs text-gray-500">Net Worth</p>
-                </div>
-                {brand.franchiseFee && (
+                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-gray-100">
                   <div>
-                    <p className="text-xl font-bold text-gray-900">{brand.franchiseFee}</p>
-                    <p className="text-xs text-gray-500">Franchise Fee</p>
+                    <p className="text-xl font-bold text-gray-900">{brand.liquidCapital}</p>
+                    <p className="text-xs text-gray-500">Liquid Capital</p>
                   </div>
-                )}
+                  <div>
+                    <p className="text-xl font-bold text-gray-900">{brand.netWorth}</p>
+                    <p className="text-xs text-gray-500">Net Worth</p>
+                  </div>
+                  {brand.franchiseFee && (
+                    <div>
+                      <p className="text-xl font-bold text-gray-900">{brand.franchiseFee}</p>
+                      <p className="text-xs text-gray-500">Franchise Fee</p>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
@@ -272,15 +401,15 @@ function BrandSlide({ brand }) {
           <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">
             Disclosed Financials
           </h3>
-          <div className={`grid gap-4 ${brand.financials.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
+          <div className={`grid gap-4 ${brand.financials.length <= 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-2'}`}>
             {brand.financials.map((f, i) => (
               <div
                 key={i}
                 className="rounded-xl p-6"
                 style={{ backgroundColor: brand.accentColor }}
               >
-                <p className="text-4xl font-black text-white mb-1">{f.value}</p>
-                <p className="text-sm text-white/80">{f.label}</p>
+                <p className="text-3xl font-black text-white mb-1">{f.value}</p>
+                <p className="text-sm text-white/80 leading-snug">{f.label}</p>
               </div>
             ))}
           </div>
@@ -294,9 +423,9 @@ function BrandSlide({ brand }) {
             <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Ideal Owner</h3>
             <ul className="space-y-3">
               {brand.idealOwner.map((trait, i) => (
-                <li key={i} className="flex items-center gap-3 text-gray-800 font-medium">
+                <li key={i} className="flex items-start gap-3 text-gray-800 font-medium">
                   <span
-                    className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs font-bold"
+                    className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs mt-0.5"
                     style={{ backgroundColor: brand.accentColor }}
                   >
                     ●
@@ -353,46 +482,26 @@ function ThankYouSlide({ data }) {
   )
 }
 
-function NavDot({ brandId, label, color, active, onClick }) {
-  return (
-    <button
-      onClick={onClick}
-      title={label}
-      className="group flex items-center gap-2"
-    >
-      <span
-        className="block w-2.5 h-2.5 rounded-full transition-all duration-200"
-        style={{
-          backgroundColor: active ? color : '#d1d5db',
-          transform: active ? 'scale(1.4)' : 'scale(1)',
-        }}
-      />
-      <span className="text-xs text-gray-500 hidden group-hover:block whitespace-nowrap">{label}</span>
-    </button>
-  )
-}
-
 function App() {
-  const [activeBrand, setActiveBrand] = useState(null)
-
-  const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    setActiveBrand(id)
-  }
-
   return (
     <div className="bg-white font-sans">
-      {/* Sticky side nav dots */}
+      {/* Sticky side nav */}
       <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
         {presentationData.brands.map((b) => (
-          <NavDot
+          <button
             key={b.id}
-            brandId={b.id}
-            label={b.name}
-            color={b.accentColor}
-            active={activeBrand === b.id}
-            onClick={() => scrollTo(b.id)}
-          />
+            onClick={() => document.getElementById(b.id)?.scrollIntoView({ behavior: 'smooth' })}
+            title={b.name}
+            className="group flex items-center gap-2"
+          >
+            <span
+              className="block w-2.5 h-2.5 rounded-full transition-all duration-200 hover:scale-150"
+              style={{ backgroundColor: b.accentColor }}
+            />
+            <span className="text-xs text-gray-500 hidden group-hover:block whitespace-nowrap bg-white shadow px-2 py-1 rounded">
+              {b.name}
+            </span>
+          </button>
         ))}
       </div>
 
